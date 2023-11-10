@@ -1,10 +1,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import csv
+from fastapi import FastAPI
 
 
-dados = pd.read_csv('dados.csv')
+import pandas as pd
+
+dados = pd.DataFrame({
+    "temperatura": [10.0, 20.0, 30.0, 40.0]
+})
+
+dados = dados.assign(data=[30.0, 5.0, 35, 25])
+
+plt.switch_backend("TkAgg")
+
+plt.plot(dados["data"], dados["temperatura"])
+
+plt.show()
+
 
 print(dados.columns)
 media = dados["temperatura"].mean()
@@ -30,20 +43,12 @@ if 'temperatura' in dados.columns:
     print(dados.empty)
 
 
-print(media)
+app = FastAPI()
 
-print(desvio_padrao)
+@app.get("/")
+def index():
+    media = dados["temperatura"].mean()
+    return {"message": "Hello, world!"}
 
-print(maximo)
-
-print(minimo)
-
-print(dados.columns)
-
-plt.switch_backend("TkAgg")
-plt.savefig("Repos personal/python_data/figure.png")
-
-plt.show()
-
-plt.plot(dados["data"], dados["temperatura"])
-plt.show()
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
