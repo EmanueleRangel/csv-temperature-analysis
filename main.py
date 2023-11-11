@@ -50,5 +50,14 @@ def index():
     media = dados["temperatura"].mean()
     return {"message": "Hello, world!"}
 
+@app.post("/feedback")
+def feedback():
+    feedback = request.json
+
+    save_feedback(feedback)
+
+    return {"message": "O feedback foi recebido."}
+
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8080)
