@@ -1,0 +1,12 @@
+backports.statistics==0.1.0
+Cython==3.0.5
+dl==0.1.0
+fastapi==0.104.1
+ipaddr==2.2.0
+keyring==18.0.1
+matplotlib==3.7.3
+mypy_extensions==1.0.0
+numpy==1.24.4
+ordereddict==1.1
+pandas==2.0.3
+wincertstore==0.2.1
